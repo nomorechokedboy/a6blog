@@ -3,6 +3,7 @@ package handler
 import (
 	"api-blog/pkg/entities"
 	"api-blog/src/config"
+	notificationEntities "api-blog/src/notification/entities"
 	"api-blog/src/server"
 	"api-blog/src/util"
 	"log"
@@ -40,13 +41,13 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	if err = db.
 		AutoMigrate(
 			&entities.User{},
-			// &entities.Post{},
-			// &entities.Slug{},
-			// &entities.Comment{},
-			// &entities.Reaction{},
-			// &notificationEntities.NotificationObject{},
-			// &notificationEntities.Notification{},
-			// &notificationEntities.NotificationChange{},
+			&entities.Post{},
+			&entities.Slug{},
+			&entities.Comment{},
+			&entities.Reaction{},
+			&notificationEntities.NotificationObject{},
+			&notificationEntities.Notification{},
+			&notificationEntities.NotificationChange{},
 		); err != nil {
 		log.Panic("failed to migrate database: ", err)
 	}
