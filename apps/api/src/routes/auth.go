@@ -1,19 +1,28 @@
 package routes
 
 import (
-	"api-blog/api/handler"
-	"api-blog/api/middleware"
+	"api-blog/src/handler"
+	"api-blog/src/middleware"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-func AuthRouter(app fiber.Router, authHandler handler.AuthHandler, userHandler handler.UserHandler, middlerware middleware.JWTMiddleware) {
+func AuthRouter(
+	app fiber.Router,
+	authHandler handler.AuthHandler,
+	userHandler handler.UserHandler,
+	middlerware middleware.JWTMiddleware,
+) {
 	auth := app.Group("/auth")
 	publicAuthRouter(auth, userHandler, authHandler)
 	privateAuthRouter(auth, userHandler, middlerware)
 }
 
-func publicAuthRouter(app fiber.Router, userHandler handler.UserHandler, authHandler handler.AuthHandler) {
+func publicAuthRouter(
+	app fiber.Router,
+	userHandler handler.UserHandler,
+	authHandler handler.AuthHandler,
+) {
 	app.Post("/login", userHandler.Login)
 	app.Put("/reset-password", userHandler.ResetPassword)
 	app.Post("/refresh-token", authHandler.RefreshToken)
@@ -21,7 +30,11 @@ func publicAuthRouter(app fiber.Router, userHandler handler.UserHandler, authHan
 	app.Post("/register", userHandler.CreateUser)
 }
 
-func privateAuthRouter(app fiber.Router, userHandler handler.UserHandler, middleware middleware.JWTMiddleware) {
+func privateAuthRouter(
+	app fiber.Router,
+	userHandler handler.UserHandler,
+	middleware middleware.JWTMiddleware,
+) {
 	app.Use(middleware.IsAuth)
 	app.Get("/me", userHandler.GetAuthUserById)
 	app.Put("/update-password", userHandler.UpdatePassword)

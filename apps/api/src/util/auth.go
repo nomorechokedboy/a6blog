@@ -1,7 +1,7 @@
 package util
 
 import (
-	"api-blog/api/config"
+	"api-blog/src/config"
 	"time"
 
 	"github.com/gofiber/fiber/v2"

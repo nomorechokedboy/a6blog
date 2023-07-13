@@ -1,12 +1,12 @@
 package main
 
 import (
-	"api-blog/api/config"
-	"api-blog/api/util"
 	_ "api-blog/docs"
 	"api-blog/pkg/entities"
+	"api-blog/src/config"
 	notificationEntities "api-blog/src/notification/entities"
 	"api-blog/src/server"
+	"api-blog/src/util"
 	"fmt"
 	"log"
 	"time"

@@ -1,14 +1,14 @@
 package server
 
 import (
-	"api-blog/api/config"
-	"api-blog/api/gorm_repository"
-	"api-blog/api/handler"
-	"api-blog/api/middleware"
-	"api-blog/api/routes"
 	"api-blog/pkg/usecase"
+	"api-blog/src/config"
+	"api-blog/src/gorm_repository"
+	"api-blog/src/handler"
+	"api-blog/src/middleware"
 	"api-blog/src/notification"
 	"api-blog/src/reaction"
+	"api-blog/src/routes"
 
 	"github.com/ansrivas/fiberprometheus/v2"
 	"github.com/gofiber/fiber/v2"

@@ -1,13 +1,17 @@
 package routes
 
 import (
-	"api-blog/api/handler"
-	"api-blog/api/middleware"
+	"api-blog/src/handler"
+	"api-blog/src/middleware"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-func UserRouter(app fiber.Router, handler handler.UserHandler, middleware middleware.JWTMiddleware) {
+func UserRouter(
+	app fiber.Router,
+	handler handler.UserHandler,
+	middleware middleware.JWTMiddleware,
+) {
 	users := app.Group("/user")
 	publicRouter(users, handler)
 	privateRouter(users, handler, middleware)

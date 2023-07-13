@@ -1,7 +1,7 @@
 package reaction
 
 import (
-	"api-blog/api/middleware"
+	"api-blog/src/middleware"
 
 	"github.com/gofiber/fiber/v2"
 )

@@ -1,10 +1,10 @@
 package gorm_repository
 
 import (
-	"api-blog/api/scopes"
 	"api-blog/pkg/common"
 	"api-blog/pkg/entities"
 	"api-blog/pkg/repository"
+	"api-blog/src/scopes"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"

@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"api-blog/api/config"
+	"api-blog/src/config"
 	"context"
 	"fmt"
 	"strings"
@@ -53,7 +53,14 @@ func (handler *MediaHandler) PostImage(c *fiber.Ctx) error {
 	if createBucketErr != nil {
 		return fiber.NewError(fiber.StatusInternalServerError, "something bad happended")
 	}
-	_, err = handler.minioClient.PutObject(ctx, bucket, fileName, fileBuffer, fileSize, minio.PutObjectOptions{ContentType: contentType})
+	_, err = handler.minioClient.PutObject(
+		ctx,
+		bucket,
+		fileName,
+		fileBuffer,
+		fileSize,
+		minio.PutObjectOptions{ContentType: contentType},
+	)
 	if err != nil {
 		return fiber.NewError(fiber.StatusInternalServerError, err.Error())
 	}
@@ -83,7 +90,12 @@ func (handler *MediaHandler) GetMedia(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(fiber.StatusNotFound, "Can not found Image")
 	}
-	newObject, err := handler.minioClient.GetObject(ctx, bucket, objectName, minio.GetObjectOptions{})
+	newObject, err := handler.minioClient.GetObject(
+		ctx,
+		bucket,
+		objectName,
+		minio.GetObjectOptions{},
+	)
 	if err != nil {
 		return fiber.NewError(fiber.StatusInternalServerError, "Can not get Image")
 	}

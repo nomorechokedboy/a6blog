@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"api-blog/api/util"
+	"api-blog/src/util"
 
 	"github.com/gofiber/fiber/v2"
 )

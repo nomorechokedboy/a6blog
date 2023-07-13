@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"api-blog/api/handler"
-	"api-blog/api/middleware"
+	"api-blog/src/handler"
+	"api-blog/src/middleware"
 
 	"github.com/gofiber/fiber/v2"
 )

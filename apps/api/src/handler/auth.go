@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"api-blog/api/config"
-	"api-blog/api/util"
 	"api-blog/pkg/entities"
+	"api-blog/src/config"
+	"api-blog/src/util"
 	"time"
 
 	"github.com/gofiber/fiber/v2"

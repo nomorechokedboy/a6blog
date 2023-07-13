@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"api-blog/api/config"
 	"api-blog/pkg/common"
 	"api-blog/pkg/entities"
 	"api-blog/pkg/usecase"
+	"api-blog/src/config"
 	"context"
 	"crypto/sha256"
 	"fmt"

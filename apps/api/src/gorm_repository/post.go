@@ -1,10 +1,10 @@
 package gorm_repository
 
 import (
-	"api-blog/api/scopes"
 	"api-blog/pkg/common"
 	"api-blog/pkg/entities"
 	"api-blog/pkg/repository"
+	"api-blog/src/scopes"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
@@ -20,7 +20,9 @@ func NewPostGormRepository(db *gorm.DB) repository.PostRepository {
 	}
 }
 
-func (r *PostGormRepo) GetAllPosts(query *entities.PostQuery) (common.BasePaginationResponse[entities.Post], error) {
+func (r *PostGormRepo) GetAllPosts(
+	query *entities.PostQuery,
+) (common.BasePaginationResponse[entities.Post], error) {
 	var posts []entities.Post
 	res := common.BasePaginationResponse[entities.Post]{}
 

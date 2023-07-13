@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"api-blog/api/config"
-	"api-blog/api/util"
 	"api-blog/pkg/entities"
 	"api-blog/pkg/usecase"
+	"api-blog/src/config"
+	"api-blog/src/util"
 	"api-blog/templates"
 	"bytes"
 	"log"
