@@ -37,7 +37,7 @@ pub struct AppSettings {
 #[derive(Clone, Debug, Deserialize)]
 pub struct Redis {
     pub host: String,
-    // pub port: u16,
+    pub port: u16,
 }
 
 impl AppSettings {
