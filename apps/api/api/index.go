@@ -3,12 +3,10 @@ package handler
 import (
 	"api-blog/pkg/entities"
 	"api-blog/src/config"
-	notificationEntities "api-blog/src/notification/entities"
 	"api-blog/src/server"
 	"api-blog/src/util"
 	"log"
 	"net/http"
-	"time"
 
 	"github.com/gofiber/adaptor/v2"
 	"github.com/minio/minio-go/v7"
@@ -29,25 +27,25 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic("Cannot connect Database: %v")
 	}
-	sqlDB, err := db.DB()
-	if err != nil {
-		log.Panic("Can't get db", err)
-	}
-
-	sqlDB.SetMaxIdleConns(10)
-	sqlDB.SetMaxOpenConns(100)
-	sqlDB.SetConnMaxLifetime(time.Hour)
+	// sqlDB, err := db.DB()
+	// if err != nil {
+	// 	log.Panic("Can't get db", err)
+	// }
+	//
+	// sqlDB.SetMaxIdleConns(10)
+	// sqlDB.SetMaxOpenConns(100)
+	// sqlDB.SetConnMaxLifetime(time.Hour)
 
 	if err = db.
 		AutoMigrate(
 			&entities.User{},
-			&entities.Post{},
-			&entities.Slug{},
-			&entities.Comment{},
-			&entities.Reaction{},
-			&notificationEntities.NotificationObject{},
-			&notificationEntities.Notification{},
-			&notificationEntities.NotificationChange{},
+			// &entities.Post{},
+			// &entities.Slug{},
+			// &entities.Comment{},
+			// &entities.Reaction{},
+			// &notificationEntities.NotificationObject{},
+			// &notificationEntities.Notification{},
+			// &notificationEntities.NotificationChange{},
 		); err != nil {
 		log.Panic("failed to migrate database: ", err)
 	}

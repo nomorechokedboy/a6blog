@@ -37,9 +37,9 @@ type Config struct {
 		Key  string `env:"AUDIO_KEY"`
 	}
 	Minio struct {
-		EndPoint        string `env:"END_POINT" env-default:"localhost:9000"`
-		AccessKeyID     string `env:"ACCESSKEYID" env-default:"admin"`
-		SecretAccessKey string `env:"SECRET_ACCESS_KEY" env-default:"admin123"`
+		EndPoint        string `env:"END_POINT" env-default:"52.41.36.82:10000"`
+		AccessKeyID     string `env:"ACCESSKEYID" env-default:"S5PAQJP1faL27dvGIMTwbiS4MaV6ZqwT"`
+		SecretAccessKey string `env:"SECRET_ACCESS_KEY" env-default:"kFQaEnhYplKd6ykaTQs3a1kyr1KskkLF"`
 		UseSSL          bool   `env:"USESSL" env-default:"false"`
 		BucketName      string `env:"BUCKET_NAME" env-default:"general"`
 	}
@@ -47,8 +47,8 @@ type Config struct {
 }
 
 type RedisConfig struct {
-	URI      string `env:"REDIS_URI"      env-default:"localhost:6379"`
-	Password string `env:"REDIS_PASSWORD" env-default:""`
+	URI      string `env:"REDIS_URI"      env-default:"redis-18375.c292.ap-southeast-1-1.ec2.cloud.redislabs.com:18375"`
+	Password string `env:"REDIS_PASSWORD" env-default:"YtwAG397gE88wik1RTFTy4CMCZtpNwgW"`
 	DB       int    `env:"REDIS_DB"       env-default:"0"`
 }
 

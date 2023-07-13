@@ -7,7 +7,6 @@ import (
 	"api-blog/src/handler"
 	"api-blog/src/middleware"
 	"api-blog/src/notification"
-	"api-blog/src/reaction"
 	"api-blog/src/routes"
 
 	"github.com/ansrivas/fiberprometheus/v2"
@@ -39,28 +38,28 @@ func New(cfg *config.Config, db *gorm.DB, minioClient *minio.Client, rdb *redis.
 	middle := middleware.NewJWTMiddleware(cfg.AuthConfig.JWTSecret)
 
 	// register usecase
-	authHandler := handler.NewAuthHanlder(cfg.AuthConfig)
+	// authHandler := handler.NewAuthHanlder(cfg.AuthConfig)
 	// user
 	userRepo := gorm_repository.NewUserGormRepository(db)
 	userUC := usecase.NewUserUsecase(userRepo)
 	userHandler := handler.NewUserHandler(userUC, *cfg)
 
 	// Media
-	mediaHandler := handler.NewMediaHandler(*cfg, minioClient)
+	// mediaHandler := handler.NewMediaHandler(*cfg, minioClient)
 
 	// slug
-	slugRepo := gorm_repository.NewSlugGormRepository(db)
-	slugUC := usecase.NewSlugUseCase(slugRepo)
+	// slugRepo := gorm_repository.NewSlugGormRepository(db)
+	// slugUC := usecase.NewSlugUseCase(slugRepo)
 
 	// post
-	postRepo := gorm_repository.NewPostGormRepository(db)
-	postUC := usecase.NewPostUseCase(postRepo)
-	postHandler := handler.NewPostHandler(postUC, slugUC, userUC, cfg, minioClient, rdb)
+	// postRepo := gorm_repository.NewPostGormRepository(db)
+	// postUC := usecase.NewPostUseCase(postRepo)
+	// postHandler := handler.NewPostHandler(postUC, slugUC, userUC, cfg, minioClient, rdb)
 
 	// comment
-	commentRepo := gorm_repository.NewCommentGormRepository(db)
-	commentUC := usecase.NewCommentUseCase(commentRepo)
-	commentHandler := handler.NewCommentHandler(commentUC, rdb)
+	// commentRepo := gorm_repository.NewCommentGormRepository(db)
+	// commentUC := usecase.NewCommentUseCase(commentRepo)
+	// commentHandler := handler.NewCommentHandler(commentUC, rdb)
 
 	notifyRepo := notification.NewNotifyRepository(db, rdb)
 
@@ -83,11 +82,11 @@ func New(cfg *config.Config, db *gorm.DB, minioClient *minio.Client, rdb *redis.
 	api := app.Group("/api")
 	v1 := api.Group("/v1")
 	routes.UserRouter(v1, *userHandler, *middle)
-	routes.AuthRouter(v1, *authHandler, *userHandler, *middle)
-	routes.MediaRouter(v1, *mediaHandler, *middle)
-	routes.PostRouter(v1, *postHandler, *middle)
-	routes.CommentRouter(v1, *commentHandler, *middle)
-	reaction.RegisterReactionApi(v1, *middle)
+	// routes.AuthRouter(v1, *authHandler, *userHandler, *middle)
+	// routes.MediaRouter(v1, *mediaHandler, *middle)
+	// routes.PostRouter(v1, *postHandler, *middle)
+	// routes.CommentRouter(v1, *commentHandler, *middle)
+	// reaction.RegisterReactionApi(v1, *middle)
 
 	return app
 }
