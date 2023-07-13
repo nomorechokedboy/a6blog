@@ -1,0 +1,34 @@
+name: CD workflows
+on:
+        workflow_run:
+                workflows:
+                        ['Publish api', 'Publish api-blog', 'Publish noisy-boi']
+                branches: [main, dev]
+                types:
+                        - completed
+        push:
+                branches:
+                        - main
+                paths:
+                        - apps/api/**
+                        - apps/api-blog/**
+                        - apps/noisy-boi/**
+jobs:
+        deploy:
+                runs-on: ubuntu-latest
+                steps:
+                        - name: Checkout
+                          uses: actions/checkout@v2
+                        - uses: okteto/context@latest
+                          with:
+                                  token: ${{secrets.OKTETO_TOKEN}}
+                        - name: 'Activate Namespace'
+                          uses: okteto/namespace@latest
+                          with:
+                                  namespace: nomorechokedboy
+                        - name: 'Trigger the pipeline'
+                          uses: okteto/pipeline@latest
+                          with:
+                                  name: pizza
+                                  timeout: 8m
+                                  filename: docker-compose.yml

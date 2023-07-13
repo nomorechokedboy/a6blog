@@ -1,0 +1,8 @@
+.gitignore
+.air.toml
+docs
+tmp
+testdata
+*_test.go
+**/node_modules
+

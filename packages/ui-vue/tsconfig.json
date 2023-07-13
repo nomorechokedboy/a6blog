@@ -1,0 +1,16 @@
+{
+	"extends": "tsconfig/vue-library.json",
+	"include": ["."],
+	"exclude": ["dist", "build", "node_modules"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"$/*": ["./components/*"],
+			"$common": ["./components/common/index.ts"],
+			"$tests": ["./components/tests/index.ts"]
+		},
+		"types": ["vitest/globals", "vitest/importMeta"],
+		"isolatedModules": false,
+		"outDir": "dist"
+	}
+}
