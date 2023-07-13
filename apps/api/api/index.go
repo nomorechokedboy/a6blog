@@ -1,11 +1,11 @@
 package handler
 
 import (
-	"api-blog/api/config"
-	"api-blog/api/util"
 	"api-blog/pkg/entities"
+	"api-blog/src/config"
 	notificationEntities "api-blog/src/notification/entities"
 	"api-blog/src/server"
+	"api-blog/src/util"
 	"log"
 	"net/http"
 	"time"
