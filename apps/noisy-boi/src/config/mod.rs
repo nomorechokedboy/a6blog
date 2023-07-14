@@ -38,6 +38,7 @@ pub struct AppSettings {
 pub struct Redis {
     pub host: String,
     pub port: u16,
+    pub password: String,
 }
 
 impl AppSettings {

@@ -20,7 +20,6 @@ use actix_cors::Cors;
 use actix_web::{middleware::Logger, web, App, HttpServer, Scope};
 use anyhow::Context;
 use notification::{broadcaster::Broadcaster, handlers::notify};
-use redis_async::client;
 use sqlx::postgres::PgPoolOptions;
 use std::sync::Arc;
 use std::time::Instant;
@@ -52,9 +51,12 @@ async fn main() -> anyhow::Result<()> {
     let get_notification_repo = GetNotificationRepository::new(pool);
 
     let broadcaster = Broadcaster::create();
-    let pubsub_con = client::pubsub_connect(&settings.redis.host, settings.redis.port)
-        .await
-        .context("Cannot connect to Redis")?;
+    let pubsub_con =
+        redis_async::client::ConnectionBuilder::new(&settings.redis.host, settings.redis.port)?
+            .password(settings.redis.password.clone())
+            .pubsub_connect()
+            .await
+            .context("Cannot connect to Redis")?;
     let msgs = pubsub_con
         .subscribe("notification")
         .await
