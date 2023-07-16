@@ -66,6 +66,7 @@ func New(cfg *config.Config, db *gorm.DB, minioClient *minio.Client, rdb *redis.
 
 	// app
 	app := fiber.New()
+	middlewares(app)
 	app.Use(func(c *fiber.Ctx) error {
 		c.Locals("db", db)
 		c.Locals("userService", userUC)
